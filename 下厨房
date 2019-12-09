@@ -1,0 +1,36 @@
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Scanner;
+public class Main {
+    private static Set<String> set = new HashSet<>();
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            checkFoodNum(in.nextLine());
+        }
+        System.out.println(set.size());
+        set.clear();
+        in.close();
+    }
+
+    private static void checkFoodNum(String s) {
+        int start = 0, end = 0;
+        while (start < s.length() && end < s.length()) {
+            while (start < s.length() && s.charAt(start) == ' ') {
+                start++;
+            }
+            //循环结束,left指向空格后的第一个字母
+            end = start;
+            while (end < s.length() && s.charAt(end) != ' ') {
+                end++;
+            }
+            //right指向这串单词后的第一个空格
+            //将这个字符串单词字符串加进Set
+            if (!set.contains(s.substring(start, end))) {
+                set.add(s.substring(start, end));
+            }
+            start = end;
+        }
+    }    
+}   

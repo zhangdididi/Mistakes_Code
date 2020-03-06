@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Parenthesis {
+    public boolean chkParenthesis(String A, int n) {
+        // write code here
+        if (A == null || n == 0) return false;
+        Stack<Character> stackOfLeft = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            if (A.charAt(i) == '(') {
+                stackOfLeft.push(A.charAt(i));
+            } else if (A.charAt(i) == ')') {
+                if (stackOfLeft.isEmpty()) {
+                    return false;
+                } else {
+                    stackOfLeft.pop();
+                }
+            } else {
+                return false;
+            }
+        }
+        if (stackOfLeft.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

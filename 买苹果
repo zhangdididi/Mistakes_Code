@@ -1,20 +1,21 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        int ret = bagNum(n);
+        int ret = numOfBag(n);
         System.out.println(ret);
     }
     
-    private static int bagNum(int n) {
-        //如果购买苹果数量小于1或者大于100.就返回-1
-        if (n < 6 || n > 100 || n == 7) return -1;
-        //如果买八个每袋的刚好够数，就返回买八个的袋数
-        //先用总数%8，如果不能余6或者0，就减去6再%8
-        int bagNumber = 0;
-        while (n % 8 != 0 && n % 8 != 6) {
-            if (n % 8)
+    private static int numOfBag(int n) {
+        for (int i = 0; i * 6 <= n; i++) {
+            for (int j = 0; (i * 6 + j * 8) <= n; j++) {
+                if ((i * 6 + j * 8) == n) {
+                    return (i + j);
+                }
+            }
         }
+        return -1;
     }
 }

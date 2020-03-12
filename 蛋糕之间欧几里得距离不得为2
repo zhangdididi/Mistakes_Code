@@ -5,50 +5,14 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int H = in.nextInt();
         int W = in.nextInt();
-        int[][] cakes = new int[H][W];
-        System.out.println(numOfCake(cakes, W, H));
-    }
-    
-    private static int numOfCake(int[][] cakes, int H, int W) {
-        if (cakes == null || (W == 0 && H == 0)) {
-            return 0;
-        }
-        //如果方格长宽小于2，就填满
-        if (W <= 2 && H <= 2) {
-            return W * H;
-        }
-        if (W == 3 && H == 3) {
-            return 5;
-        }
-        int count = 0;
-        int carryRow = W % 3;//横向%3剩余的空格数
-        int cakeNumRow = W / 3;//横向除去剩余的每行可以放的
-        int row1 = 0, row2 = 0, row3 = 0;
-        if (carryRow == 0) {
-            row1 = cakeNumRow;
-            row2 = cakeNumRow;
-            row3 = cakeNumRow;
-        }
-        if (carryRow == 1) {
-            row1 = cakeNumRow;
-            row2 = cakeNumRow - 1;
-            row3 = cakeNumRow - 1;
-        }
-        if (carryRow == 2) {
-            row1 = cakeNumRow;
-            row2 = cakeNumRow;
-            row3 = cakeNumRow - 1;
-        }
-        int carryCol = H % 3;
-        int cakeNumCol = H / 3;
-        count += (row1 + row2 + row3) * cakeNumCol;
-        count += carryCol == 1 ? row1 : 0;
-        count += carryCol == 2 ? (row1 + row2) : 0;
-        if (carryCol == 0 && (carryRow == 0 || carryRow == 2)) return count + 2;
-        if (carryCol == 0 && carryRow == 1) return count + 1;
-        if (carryCol == 1 && (carryRow == 0 || carryRow == 1 || carryRow == 2)) return count + 2;
-        if (carryCol == 2 && carryRow == 0) return count + 3;
-        if (carryCol == 2 && (carryRow == 1 || carryRow == 2)) return count + 2;
-        return count;
+        //第i+1 、 i + 2行
+        int evenCount = (W / 4) * 2 + (W % 4 < 2 ? 1 : 2);
+        //第i+3 、 i+4行
+        int oddCount = (W / 4) * 2 + (W % 4 < 3 ? 0 : 1);
+        int res = (H / 4) * (evenCount + oddCount) * 2;
+        if (H % 4 >= 1) res += evenCount;
+        if (H % 4 >= 2) res += evenCount;
+        if (H % 4 >= 3) res += oddCount;
+        System.out.println(res);
     }
 }

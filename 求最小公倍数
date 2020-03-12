@@ -21,3 +21,30 @@ public class Main {
         System.out.println(num / A);
     }
 }
+
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int m = in.nextInt(), n = in.nextInt();
+        //先求最大公约数、
+        int bd = biggestDivisor(m, n);
+        //再用m和n的乘积除以最大公约数，就是最大公倍数
+        int res = m * n / bd;
+        System.out.println(res);
+    }
+    
+    private static int biggestDivisor(int m, int n) {
+        if (m == 0) return n;
+        while (m != n) {
+            if (m < n) {
+                int temp = m;
+                m = n;
+                n = temp;
+            }
+            n = n % m;
+        }
+        return n;
+    }
+}

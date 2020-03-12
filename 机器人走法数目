@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Robot {
+    public int countWays(int x, int y) {
+        // write code here
+        //首先如果是一个空格，返回0，不用走
+        if (x == 0 || y == 0) return 0;
+        //如果x为1，或者y为1，就返回1
+        if (x == 1 || y == 1) return 1;
+        //如果其中一个为2，就返回另一个数字
+        if (x == 2) return y;
+        if (y == 2) return x; 
+        //x 和 y都大于3\
+        return countWays(x, y - 1) + countWays(x - 1, y);
+    }
+}

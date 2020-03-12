@@ -48,3 +48,26 @@ public class Main {
         return n;
     }
 }
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int A = in.nextInt();
+        int B = in.nextInt();
+        System.out.println(smallestMultiple(A, B));
+    }
+    
+    public static int smallestMultiple(int A, int B) {
+        return (A * B) / bd(A, B);
+    }
+    
+    private static int bd(int m, int n) {
+        if (n == 0) return m;
+        return bd(n, m % n);
+    }
+    
+}

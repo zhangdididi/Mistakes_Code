@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        int step = howToFib(N);
+        System.out.println(step);
+        in.close();
+    }
+    
+    private static int howToFib(int N) {
+        if (N <= 0) return 0;
+        int fib1 = 0, fib2 = 1, fib3 = 0;
+        //先求出小于等于N的距离N最近的斐波那契数列
+        while (fib3 <= N) {
+            fib3 = fib1 + fib2;
+            fib1 = fib2;
+            fib2 = fib3;
+            if (fib1 + fib2 > N) break;
+        }
+        //此时fib3是最接近N的斐波那契数列
+        int step1 = N - fib3;
+        fib3 = fib1 + fib2;
+        int step2 = fib3 - N;
+        return step1 < step2 ? step1 : step2;
+    }
+}

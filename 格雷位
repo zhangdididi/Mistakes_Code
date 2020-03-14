@@ -20,6 +20,7 @@ public static String[] getGray(int n) {
     if (n == 0) return res;
     index = 2;
     getGrayStringArray(n, res);
+    //拷贝最后n位的格雷位
     String[] ret = Arrays.copyOfRange(res, length - pow(n), length);
     return ret;
 }

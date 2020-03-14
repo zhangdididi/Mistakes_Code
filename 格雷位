@@ -1,0 +1,35 @@
+ private static int index = 2;
+    public static String[] getGray(int n) {
+        // write code here
+        int length = 0;
+        for (int i = 1; i <= n; i++) {
+            length += pow(i);
+        }
+        String[] res = new String[length];
+        if (n == 0) return res;
+        index = 2;
+        getGrayStringArray(n, res);
+        String[] ret = Arrays.copyOfRange(res, length - pow(n), length);
+        return ret;
+    }
+
+    private static void getGrayStringArray(int n, String[] res) {
+        //如果n为1，就加入"0"、"1"，并返回
+        if (n == 1) {
+            res[0] = "0";
+            res[1] = "1";
+            return;
+        }
+        getGrayStringArray(n - 1, res);
+        //如果大于1，就根据前一位的所有字符串来构建当前位数的字符串
+        //当前位数的字符串为前一位字符串前加0，在反转当前位数的字符串
+        int constIndex = index;
+        while (index < pow(n) + constIndex) {
+            for (int i = constIndex - pow(n - 1); i < constIndex; i++) {
+                res[index++] = "0" + res[i];
+            }
+            for (int i = constIndex - 1; i >= constIndex - pow(n - 1); i--) {
+                res[index++] = "1" + res[i];
+            }
+        }
+    }

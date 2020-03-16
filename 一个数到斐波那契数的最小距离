@@ -1,5 +1,10 @@
-import java.util.Scanner;
+/*
+给你一个N，你想让其变为一个Fibonacci数，每一步你可以把
+当前数字X变为X-1或者X+1，现在给你一个数N求最少需要多少步可以变为Fibonacci数。
 
+*/
+
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

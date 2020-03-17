@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            int N = in.nextInt();
+            char ch = in.next().charAt(0);
+            print(N, ch);
+        }
+    }
+    
+    private static void print(int N, char ch) {
+        //如果边长不符合规定就返回false
+        if (N < 3 || N > 20) {
+            return;
+        }
+        //分别找到横向和纵向打印的字符数量
+        int col = N;
+        int row = N / 2 - 2;
+        //如果为奇数
+        if (N % 2 != 0) {
+            row++;
+        }
+        //打印第一行
+        for (int i = 0; i < col; i++) {
+            System.out.print(ch);
+        }
+        System.out.println();
+        //打印竖向边
+        for (int i = 0; i < row; i++) {
+            System.out.print(ch);
+            for (int j = 0; j < col - 2; j++) {
+                System.out.print(" ");
+            }
+            System.out.print(ch);
+            System.out.println();
+        }
+        //打印最后一行
+        for (int i = 0; i < col; i++) {
+            System.out.print(ch);
+        }
+    }
+}

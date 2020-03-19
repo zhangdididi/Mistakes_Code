@@ -1,0 +1,48 @@
+import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int T = in.nextInt();
+        for (int i = 0; i < T; i++) {
+            int n = in.nextInt(), k = in.nextInt();
+            int[] data = new int[2 * n];
+            for (int j = 0; j < 2 * n; j++) {
+                data[j] = in.nextInt();
+            }
+            for (int j = 0; j < k; j++) {
+                flushPoke(data);
+            }
+            for (int j = 0; j < data.length - 1; j++) {
+                System.out.print(data[j]);
+                System.out.print(" ");
+            }
+            System.out.println(data[data.length - 1]);
+        }
+    }
+    
+    private static void flushPoke(int[] data) {
+        //如果数组为空，或长度为0，直接返回
+        if (data == null || data.length == 0) return;
+        //创建两个栈空间，分别放左手和右手的牌
+        Queue<Integer> queueOfLeft = new LinkedList<>();
+        Queue<Integer> queueOfRight = new LinkedList<>();
+        int length = data.length;
+        for (int i = 0; i < length / 2; i++) {
+            queueOfLeft.offer(data[i]);
+        }
+        for (int i = length / 2; i < length; i++) {
+            queueOfRight.offer(data[i]);
+        }
+        for (int i = 0; i < length; i++) {
+            if (i == 0 || i % 2 == 0) {
+                //该下标位置放右手元素
+                data[i] = queueOfLeft.poll();
+            } else if (i == 1 || i % 2 != 0) {
+                data[i] = queueOfRight.poll();
+            }
+        }
+    }
+}

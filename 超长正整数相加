@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            String addend = in.nextLine();//加数
+            String augend = in.nextLine();//被加数
+            String ret = add(addend, augend);
+            System.out.println(ret);
+        }
+    }
+    private static String add(String addend, String augend) {
+        //如果一个为空，就返回另一个字符串
+        if (addend == null || addend.length() == 0) {
+            return augend;
+        }
+        if (augend == null || augend.length() == 0) {
+            return addend;
+        }
+        int addLength = addend.length();
+        int augLength = augend.length();
+        StringBuilder res = new StringBuilder("");
+        int carry = 0;
+        int i = addLength - 1, j = augLength - 1;
+        for (; i >= 0 || j >= 0; i--, j--) {
+            int addInt = i >= 0 ? addend.charAt(i) - '0' : 0;
+            int augInt = j >= 0 ? augend.charAt(j) - '0' : 0;
+            int value = (addInt + augInt + carry) % 10;
+            carry = (addInt + augInt + carry) / 10;
+            res.append(value);
+        }
+        if (carry == 1) {
+            res.append(1);
+        }
+        return res.reverse().toString();
+    }
+}

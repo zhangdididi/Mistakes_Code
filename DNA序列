@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -6,7 +7,25 @@ public class Main {
             String str = in.nextLine();
             int length = in.nextInt();
             char[] chars = str.toCharArray();
-            
+            String maxRatioStr = null;
+            int left = 0, right = left;
+            int maxRatio = 0, num = 0;
+            while (left < chars.length && right < chars.length) {
+                while (left < chars.length && chars[left] != 'G' && chars[left]  != 'C') {
+                    left++;
+                }
+                //循环结束，left指向每length个第一个g或c
+                for (int i = 0; right < chars.length && i < length; i++) {
+                    if (chars[right] == 'G' || chars[left] == 'C') {
+                        num++;
+                    }
+                    right++;
+                }
+                //循环结束， right指向滑动窗口最右边
+                if (num > maxRatio) {
+                    maxRatioStr = str.substring(left, right)
+                }
+            }
         }
     }
 }

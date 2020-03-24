@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Gift {
+    public int getValue(int[] gifts, int n) {
+        // write code here
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : gifts) {
+            int count = map.getOrDefault(num, 0);
+            map.put(num, count + 1);
+        }
+        for (int i = 0; i < n; i++) {
+            if (map.get(gifts[i]) > (n / 2)) {
+                return gifts[i];
+            }
+        }
+        return 0;
+    }
+}

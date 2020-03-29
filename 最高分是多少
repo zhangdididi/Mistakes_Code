@@ -1,1 +1,37 @@
 
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()) {
+            String inStr = in.nextLine();
+            String[] strs = inStr.split(" ");
+            int stuNum = Integer.parseInt(strs[0]);
+            int doNum = Integer.parseInt(strs[1]);
+            String scoreStr = in.nextLine();
+            String[] scoreStrs = scoreStr.split(" ");
+            int[] scores = new int[scoreStrs.length];
+            for (int i = 0; i < scoreStrs.length; i++) {
+                scores[i] = Integer.parseInt(scoreStrs[i]);
+            }
+            for (int i = 0; i < doNum; i++) {
+                String doStr = in.nextLine();
+                String[] doStrs = doStr.split(" ");
+                char C = doStrs[0].charAt(0);
+                int A = Integer.parseInt(doStrs[1]);
+                int B = Integer.parseInt(doStrs[2]);
+                if (C == 'U') {
+                    //更新操作
+                    scores[A - 1] = B;
+                } else if (C == 'Q') {
+                    //查询操作
+                    int max = Integer.MIN_VALUE;
+                    for (int j = A - 1; j <= B - 1; j++) {
+                        max = Math.max(max, scores[j]);
+                    }
+                    System.out.println(max);
+                }
+            }
+        }
+    }
+}

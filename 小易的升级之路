@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            String inStr = in.nextLine();
+            String[] strs = inStr.split(" ");
+            int n = Integer.valueOf(strs[0]);
+            int a = Integer.valueOf(strs[1]);
+            String monStr = in.nextLine();
+            String[] mons = monStr.split(" "); 
+            int[] monsters = new int[mons.length];
+            for (int i = 0; i < mons.length; i++) {
+                monsters[i] = Integer.valueOf(mons[i]);
+            }
+            for (int i = 0; i < n; i++) {
+                if (monsters[i] <= a) {
+                    a += monsters[i];
+                } else {
+                    int temp = a;
+                    a += biggestDivisor(temp, monsters[i]);
+                }
+            }
+            System.out.println(a);
+        }
+    }
+    
+    private static int biggestDivisor(int m, int n) {
+        if (m == 0) return n;
+        while (m != n) {
+            if (m < n) {
+                int temp = m;
+                m = n;
+                n = temp;
+            }
+            n = n % m;
+        }
+        return n;
+    }
+}

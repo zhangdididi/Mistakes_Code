@@ -25,6 +25,9 @@ public class Main {
                     scores[A - 1] = B;
                 } else if (C == 'Q') {
                     //查询操作
+                    if (A > scores.length || B > scores.length) {
+                        continue;
+                    }
                     int max = Integer.MIN_VALUE;
                     for (int j = A - 1; j <= B - 1; j++) {
                         max = Math.max(max, scores[j]);

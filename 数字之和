@@ -1,1 +1,23 @@
 
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n, sum1, sum2;
+        while (in.hasNextInt()) {
+            n = in.nextInt();
+            sum1 = bitSum(n);
+            sum2 = bitSum(n * n);
+            System.out.println(sum1 + " " + sum2);
+        }
+    }
+    
+    private static int bitSum(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
+}

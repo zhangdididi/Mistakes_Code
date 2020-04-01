@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.util.HashMap;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int candidateNum, voterNum;
+        while (in.hasNext()) {
+            candidateNum = in.nextInt();
+            String[] candidates = new String[candidateNum];
+            for (int i = 0; i < candidateNum; i++) {
+                candidates[i] = in.nextLine();
+            }
+            voterNum = in.nextInt();
+            String[] voters = new String[voterNum];
+            for (int i = 0; i < voterNum; i++) {
+                voters[i] = in.nextLine();
+            }
+            for (String str : candidates) {
+                addCandidate(str);
+            }
+            for (String str : voters) {
+                vote(str);
+            }
+            for (String str : candidates) {
+                System.out.println(str + ":" + getVoteResult(str));
+            }
+            System.out.println("Invalid:" + invalidCount);
+            clear();
+        }
+    }
+    
+    //候选人以及票数
+    private static HashMap<String, Integer> table = new HashMap<>();
+    
+    //无效票数
+    private static int invalidCount = 0;
+    
+    //设置候选人
+    private static int addCandidate(String candidateName) {
+        if (table.containsKey(candidateName)) {
+            return 0;
+        }
+        table.put(candidateName, 0);
+        return 1;
+    }
+    
+    //添加票数
+    private static void vote(String voter) {
+        if (!table.containsKey(voter)) {
+            invalidCount++;
+            return;
+        }
+        int temp = table.get(voter);
+        table.put(voter, temp + 1);
+    }
+    
+    private static int getVoteResult(String candidateName) {
+        if (candidateName == null) {
+            clear();
+            return invalidCount;
+        }
+        return table.get(candidateName);
+    }
+    
+    private static void clear() {
+        table.clear();
+        invalidCount = 0;
+    }
+}

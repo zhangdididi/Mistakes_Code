@@ -1,3 +1,30 @@
 /*
 判断一个数的平方低位部分是否为本身。
 */
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int num;
+        while (in.hasNext()) {
+            num = in.nextInt();
+            int num2 = num * num;
+            boolean isSame = true;
+            while (num > 0) {
+                if (num % 10 != num2 % 10) {
+                    isSame = false;
+                }
+                num /= 10;
+                num2 /= 10;
+            }
+            if (isSame) {
+                System.out.println("Yes!");
+            } else {
+                System.out.println("No!");
+            }
+        }
+    }
+}

@@ -17,6 +17,8 @@ public class Main {
             System.out.print(ret[ret.length - 1]);
         }
     }
+    
+    
     private static int[] smallTopK(int[] array, int k) {
         if (array == null || array.length == 0) {
             throw new RuntimeException("The array is empty.");

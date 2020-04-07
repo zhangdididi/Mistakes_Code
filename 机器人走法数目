@@ -4,7 +4,6 @@
 给定两个正整数int x,int y，请返回机器人的走法数目。保证x＋y小于等于12。
 */
 
-
 import java.util.Scanner;
 public class Robot {
     public int countWays(int x, int y) {
@@ -16,7 +15,7 @@ public class Robot {
         //如果其中一个为2，就返回另一个数字
         if (x == 2) return y;
         if (y == 2) return x; 
-        //x 和 y都大于3\
+        //x 和 y都大于3
         return countWays(x, y - 1) + countWays(x - 1, y);
     }
 }

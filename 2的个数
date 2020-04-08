@@ -1,1 +1,23 @@
+import java.util.*;
 
+public class Count2 {
+    public int countNumberOf2s(int n) {
+        // write code here
+        int count = 0;
+        for (int i = 2; i <= n; i += 2) {
+            count += twoNum(i);
+        }
+        return count;
+    }
+    
+    private int twoNum(int num) {
+        int count = 0;
+        while (num > 0) {
+            if (num % 10 == 2) {
+                count++;
+            }
+            num /= 10;
+        }
+        return count;
+    }
+}

@@ -1,3 +1,7 @@
+/*
+输入一个字符串，输出每个大写字母出现的次数。
+*/
+
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {

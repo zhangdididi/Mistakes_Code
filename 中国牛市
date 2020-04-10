@@ -1,1 +1,21 @@
-
+public class Solution {
+    /**
+     * 计算你能获得的最大收益
+     * 
+     * @param prices Prices[i]即第i天的股价
+     * @return 整型
+     */
+    public int calculateMax(int[] prices) {
+        int afterFirstBuy = Integer.MAX_VALUE;
+        int afterFirstSell = 0;
+        int afterSecondBuy = Integer.MIN_VALUE;
+        int afterSecondSell = 0;
+        for (int currPrice : prices) {
+            afterFirstBuy = Math.min(afterFirstBuy, currPrice);
+            afterFirstSell = Math.max(afterFirstSell, currPrice - afterFirstBuy);
+            afterSecondBuy = Math.max(afterSecondBuy, afterFirstSell - currPrice);
+            afterSecondSell = Math.max(afterSecondSell, afterSecondBuy + currPrice);
+        }
+        return afterSecondSell;
+    }
+}

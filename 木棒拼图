@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -5,10 +6,35 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int type, L;
-        
+        LinkedList<Integer> linkedList = new LinkedList<>();
         //n次操作
         for (int i = 0; i < n; i++) {
+            type = in.nextInt();
+            L = in.nextInt();
+            if (type == 1) {
+                linkedList.add(L);
+                isPolygon(linkedList);
+            } else {
+                for (int j = 0; j < linkedList.size(); j++) {
+                    if (linkedList.get(j) == L) {
+                        linkedList.remove(j);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
+    private static void isPolygon(LinkedList<Integer> list) {
+        int sum = 0, max = -1;
+        for (Integer num : list) {
+            max = Math.max(max, num);
+            sum += num;
+        }
+        if (sum > max) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
         }
     }
 }

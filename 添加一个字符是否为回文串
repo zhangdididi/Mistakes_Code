@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            String inStr = in.next();
+            int left = 0, right = inStr.length() - 1;
+            int modCount = 0;
+            StringBuilder str = new StringBuilder();
+            while (left < right) {
+                if (modCount > 1) {
+                    break;
+                }
+                if (str.charAt(left) != str.charAt(right)) {
+                    str.insert(right + 1, str.charAt(left));
+                    left++;
+                    modCount++;
+                } else {
+                    left++;
+                    right--;
+                }
+            }
+            if (modCount > 1) {
+                System.out.println("No");
+            } else {
+                System.out.println("Yes");
+            }
+        }
+    }
+}

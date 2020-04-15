@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Printer {
+    public int[] arrayPrint(int[][] arr, int n) {
+        // write code here
+        if (arr == null || n == 0) {
+            return new int[0];
+        }
+        //可以先第一行从左向右处理横向
+        //再第一列从上到下进行处理
+        int[] res = new int[n * n];
+        int index = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            int row = 0,col = i;
+            res[index++] = arr[row++][col++];
+            while (row < n && col < n) {
+                res[index++] = arr[row++][col++];
+            }
+        }
+        
+        for (int i = 1; i < n; i++) {
+            int row = i, col = 0;
+            res[index++] = arr[row++][col++];
+            while (row < n && col < n) {
+                res[index++] = arr[row++][col++];
+            }
+        }
+        return res;
+    }
+}

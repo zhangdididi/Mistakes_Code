@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            String inStr = in.nextLine();
+            StringBuilder str = new StringBuilder();
+            int length = inStr.length();
+            int right = length, left = length - 1;
+            while (right >= 0 && left >= 0) {
+                while (left >= 0 && inStr.charAt(left) != ' ') {
+                    left--;
+                }
+                //循环结束，left指向空格，此时将该单词加入到str中
+                str.append(inStr.substring(left + 1, right));
+                if (left >= 0) {
+                    str.append(inStr.charAt(left));
+                }
+                right = left;
+                left--;
+            }
+            System.out.println(str);
+        }
+    }
+}

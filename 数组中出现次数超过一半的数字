@@ -1,1 +1,15 @@
-
+public class Solution {
+    public int MoreThanHalfNum_Solution(int [] array) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : array) {
+            int count = map.getOrDefault(num, 0);
+            map.put(num, count + 1);
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (map.get(array[i]) > array.length / 2) {
+                return array[i];
+            }
+        }
+        return 0;
+    }
+}

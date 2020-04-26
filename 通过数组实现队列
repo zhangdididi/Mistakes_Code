@@ -1,0 +1,108 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static int[] queue;
+    //插入元素下标
+    public static int lastIndex = 0;
+    //队首元素下标
+    public static int firstIndex = 0;
+    //队列长度
+    public static int size = 0;
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int T = in.nextInt();
+        //T组测试数据
+        for (int i = 0; i < T; i++) {
+            clear();
+            queue = new int[10];
+            //Q次操作
+            int Q = in.nextInt();
+            for (int j = 0; j < Q; j++) {
+                String inStr = in.next();
+                //如果分隔成两个元素，那肯定就是插入，进行判断
+                if ("PUSH".equals(inStr)) {
+                    int num = in.nextInt();
+                    push(num);
+                } else if ("TOP".equals(inStr)) {
+                    System.out.println(top());
+                } else if ("POP".equals(inStr)) {
+                    if (pop() == -1) {
+                        System.out.println(-1);
+                    }
+                } else if ("SIZE".equals(inStr)) {
+                    System.out.println(size());
+                } else if ("CLEAR".equals(inStr)) {
+                    clear();
+                }
+            }
+        }
+    }
+
+    //判断队列是否为空
+    public static boolean isEmpty() {
+        //如果为空就返回false，否则返回true
+        if (lastIndex == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //队尾插入元素
+    public static void push(int num) {
+        //先判断队列长度是否超出最长
+        //如果超出，就扩容
+        if (lastIndex >= queue.length) {
+            int[] temp = Arrays.copyOf(queue, queue.length);
+            queue = new int[queue.length * 2];
+            //将原来的数据拷贝到扩容后的数组。
+            for (int i = 0; i < temp.length; i++) {
+                queue[i] = temp[i];
+            }
+        }
+        queue[lastIndex] = num;
+        lastIndex++;
+        size++;
+    }
+
+    //取出队首元素
+    public static int top() {
+        if (isEmpty()) {
+            return -1;
+        } else {
+            return queue[firstIndex];
+        }
+    }
+
+    //删除队首元素
+    public static int pop() {
+        if (isEmpty()) {
+            return -1;
+        }
+        int temp = queue[firstIndex];
+        //将后面元素向前移一位
+        for (int i = 0; i < lastIndex - 1; i++) {
+            queue[i] = queue[i + 1];
+        }
+        size--;
+        lastIndex--;
+        queue[lastIndex] = 0;
+        return temp;
+    }
+
+    //求队列长度
+    public static int size() {
+        return size;
+    }
+
+    //清除队列
+    public static void clear() {
+        queue = new int[10];
+        firstIndex = 0;
+        lastIndex = 0;
+        size = 0;
+    }
+}

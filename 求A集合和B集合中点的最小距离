@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+class Point {
+    public Double x;
+    public Double y;
+
+    public Point(Double x, Double y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int T = in.nextInt();
+        //T组测试数据
+        for (int i = 0; i < T; i++) {
+            int n = in.nextInt();
+            Point[] A = new Point[n];
+            Point[] B = new Point[n];
+            for (int j = 0; j < n; j++) {
+                Double x = in.nextDouble();
+                Double y = in.nextDouble();
+                Point p = new Point(x, y);
+                A[j] = p;
+            }
+            for (int j = 0; j < n; j++) {
+                Double x = in.nextDouble();
+                Double y = in.nextDouble();
+                Point p = new Point(x, y);
+                B[j] = p;
+            }
+            Double min = Double.MAX_VALUE;
+            for (int j = 0; j < n; j++) {
+                //先取到A中的一个点，然后和B的挨个比较
+                Point curr = A[j];
+                for (int k = 0; k < n; k++) {
+                    //依次再取到B中的点，和curr进行比较
+                    Point p = B[k];
+                    Double sum = Math.sqrt(Math.pow((curr.x - p.x), 2) + Math.pow((curr.y - p.y), 2));
+                    min = Double.max(sum, min);
+                }
+            }
+            System.out.printf("%.3d", min);
+        }
+    }
+}

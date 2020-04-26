@@ -25,6 +25,7 @@ public class Main {
                 }
                 if (index == 2) break;
             }
+            Arrays.sort(res);
             System.out.println(res[0] + " " +res[1]);
         }
     }

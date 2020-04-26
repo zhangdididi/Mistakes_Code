@@ -1,4 +1,7 @@
-//数组中出现奇数次的数字
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

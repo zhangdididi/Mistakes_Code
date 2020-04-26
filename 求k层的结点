@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int Q = in.nextInt();
+        //Q次询问
+        for (int i = 0; i < Q; i++) {
+            //结点
+            int x = in.nextInt();
+            //层
+            int k = in.nextInt();
+
+        }
+    }
+}

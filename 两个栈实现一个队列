@@ -1,0 +1,66 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+
+    public static Stack<Integer> stack1 = new Stack<>();
+    public static Stack<Integer> stack2 = new Stack<>();
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
+            String str = in.next();
+            if ("add".equals(str)) {
+                int num = in.nextInt();
+                add(num);
+            } else if ("poll".equals(str)) {
+                poll();
+            } else if ("peek".equals(str)) {
+                System.out.println(peek());
+            }
+            System.out.println(Arrays.toString(new Stack[]{stack1}));
+        }
+    }
+
+    //添加元素
+    public static void add(int num) {
+        stack1.add(num);
+    }
+
+    //删除队首元素
+    public static int poll() {
+        //如果栈一不为空，就把栈一的元素全都插入到栈二中
+        while (!stack1.isEmpty()) {
+            int temp = stack1.pop();
+            stack2.add(temp);
+        }
+        //此时栈一第一个元素就在栈二的顶部，直接弹出
+        int res = stack2.pop();
+        //弹出之后再把元素放回到栈一中
+        while (!stack2.isEmpty()) {
+            int temp = stack2.pop();
+            stack1.add(temp);
+        }
+        return res;
+    }
+
+    //取到队首元素
+    public static int peek() {
+        //如果栈一不为空，就把栈一的元素全都插入到栈二中
+        while (!stack1.isEmpty()) {
+            int temp = stack1.pop();
+            stack2.add(temp);
+        }
+        //此时栈一第一个元素就在栈二的顶部，直接弹出
+        int res = stack2.peek();
+        //弹出之后再把元素放回到栈一中
+        while (!stack2.isEmpty()) {
+            int temp = stack2.pop();
+            stack1.add(temp);
+        }
+        return res;
+    }
+}

@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n;
+        while (in.hasNext()) {
+            n = in.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextInt();
+            }
+            for (int i = 0; i < n; i++) {
+                int left = i, right = i;
+                int curr = arr[i];
+                while (left >= 0 && arr[left] >= curr) {
+                    left--;
+                }
+                //此时如果左边找到大于curr的数，left就为该元素下标，否则就为-1
+                while (right < n && arr[right] >= curr) {
+                    right++;
+                }
+                //此时如果右边找到大于curr的数，right就为该元素下标，否则就为n
+                if (right == n) {
+                    right = -1;
+                }
+                System.out.println(left + " " + right);
+            }
+        }
+    }
+}

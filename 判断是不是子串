@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s1 = in.next();
+        String s2 = in.next();
+        int length = s2.length();
+        int index1 = s1.length() - 1, index2 = length - 1;
+        int res = 0;
+        //从后向前遍历两个字符串
+        while (index1 >= 0 && index2 >= 0) {
+
+            //如果对应的字符相等，就都向前走一步
+            if (s2.charAt(index2) == s1.charAt(index1)) {
+                length--;
+                if (length == 0) {
+                    res = index1 + 1;
+                    break;
+                }
+                index1--;
+                index2--;
+            } else {
+                //如果不相等，就让s1的指针向前走,s2指针不动
+                index1--;
+            }
+
+        }
+        System.out.println(res);
+    }
+}

@@ -3,3 +3,71 @@
 有m批客人，每批客人有两个参数:b人数，c预计消费金额。 
 在不允许拼桌的情况下，请实现一个算法选择其中一部分客人，使得总预计消费金额最大
 */
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            int m = in.nextInt();
+            //a数组保存n个桌子的最大容量
+            int[] a = new int[n];
+            //用来标记桌位是否已经被占用
+            boolean[] aFlag = new boolean[n];
+            //存储m个人数和消费金额
+            int[][] bc = new int[m][2];
+            for (int i = 0; i < n; i++) {
+                a[i] = in.nextInt();
+            }
+            Arrays.sort(a);
+            for (int i = 0; i < m; i++) {
+                bc[i][0] = in.nextInt();
+                bc[i][1] = in.nextInt();
+            }
+            //按预计消费金额从大到小排序bc数组
+            Arrays.sort(bc, new Comparator<int[]>() {
+                public int compare(int[] x, int[] y) {
+                    return y[1] - x[1];
+                }
+            });
+            long maxPrice = 0L;
+            //从消费最多的开始遍历
+            for (int i = 0; i < m; i++) {
+                //如果最大的桌子容纳不下这个人数，就放弃这批客户
+                if (a[n - 1] < bc[i][0]) {
+                    continue;
+                }
+                int num = bc[i][0];//人数
+                int price = bc[i][1];//消费金额
+                //如果可以容纳的话，就开始查找可以入座的位置
+                int index = research(a, num);
+                //找到空闲的桌位
+                while (index < n && aFlag[index]) {
+                    index++;
+                }
+                if (index < n) {
+                    aFlag[index] = true;
+                    maxPrice += price;
+                }
+            }
+            System.out.println(maxPrice);
+        }// end while
+    }
+    
+    public static int research(int[] a, int num) {
+        int left = 0, right = a.length - 1;
+        int mid = 0;
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (num <= a[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+}

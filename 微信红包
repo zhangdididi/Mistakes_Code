@@ -18,6 +18,7 @@ public class Gift {
     }
 }
 
+
 //排序
 public int getValue(int[] gifts, int n) {
     // write code here
@@ -31,6 +32,7 @@ public int getValue(int[] gifts, int n) {
     }
     return num <= n / 2 ? 0 : ans;
 }
+
 
 //计数
 public int getValue(int[] gifts, int n) {

@@ -6,7 +6,7 @@ public class Main {
         String A = in.nextLine();
         String B = in.nextLine();
         int countOfMethods = 0;
-        for (int i = 0; i < A.length(); i++) {
+        for (int i = 0; i <= A.length(); i++) {
             StringBuilder temp = new StringBuilder(A);
             temp.insert(i, B);
             if (isReserve(temp.toString())) {

@@ -18,6 +18,7 @@ public class Main {
                 //如果为数字的话，就向后走一步
                 right++;
             }
+            //此时right指向数字串的后一个字符
             if (right - left > max) {
                 res = new StringBuilder(str.substring(left, right));
                 max = right - left;

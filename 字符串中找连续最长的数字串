@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        int left = 0, right = 0;
+        int max = -1;
+        StringBuilder res = new StringBuilder("");
+        while (left < str.length() && right < str.length()) {
+            while (left < str.length() && (str.charAt(left) < '0' && str.charAt(left) > '9')) {
+                //如果不为数字的话，就向后走一步
+                left++;
+            }
+            //此时left指向数字串的第一个字符
+            right = left;
+            while (right < str.length() && (str.charAt(right) >= '0' && str.charAt(right) <= '9')) {
+                //如果为数字的话，就向后走一步
+                right++;
+            }
+            if (right - left > max) {
+                res = new StringBuilder(str.substring(left, right));
+                max = right - left;
+            }
+            left = right;
+        }
+        System.out.println(res);
+    }
+}

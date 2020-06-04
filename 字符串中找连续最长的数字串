@@ -22,7 +22,7 @@ public class Main {
                 res = new StringBuilder(str.substring(left, right));
                 max = right - left;
             }
-            left = right;
+            left = right + 1;
         }
         System.out.println(res);
     }

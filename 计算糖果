@@ -1,1 +1,18 @@
-
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int A_B = in.nextInt();
+        int B_C = in.nextInt();
+        int SumAB = in.nextInt();
+        int SumBC = in.nextInt();
+        int A = (A_B + SumAB) / 2;
+        int B = (B_C + SumBC) / 2;
+        int C = SumBC - B;
+        if (A + B == SumAB && B + C == SumBC && A - B == A_B && B - C == B_C) {
+            System.out.println(A +" " + B + " " + C);
+        } else {
+            System.out.println("No");
+        }
+    }
+}

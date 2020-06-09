@@ -1,1 +1,15 @@
-
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int m = in.nextInt();
+        int n = in.nextInt();
+        int a = (n / 4) * 2 + (n % 4 < 2 ? n % 4 : 2);
+        int b = (n / 4) * 2 + (n % 4 < 3 ? 0 : n % 4 - 2);
+        int count = m / 4 * (a + b) * 2;
+        if (m % 4 > 0) count += a;
+        if (m % 4 > 1) count += a;
+        if (m % 4 > 2) count += b;
+        System.out.println(count);
+    }
+}

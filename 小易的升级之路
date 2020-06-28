@@ -38,3 +38,38 @@ public class Main {
         return n;
     }
 }
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            int a = in.nextInt();
+            int[] monsters = new int[n];
+            for (int i = 0; i < n; i++) {
+                monsters[i] = in.nextInt();
+            }
+            //依次遍历每个怪物的防御力，和a进行比较
+            for (int i = 0; i < n; i++) {
+                //如果能力值a大于等于防御力，a += monsters[i]
+                if (a >= monsters[i]) {
+                    a += monsters[i];
+                } else {
+                    int temp1 = a;
+                    while (temp1 != 0) {
+                        int temp2 = temp1;
+                        temp1 = monsters[i] % temp1;
+                        monsters[i] = temp2;
+                    }
+                    a += monsters[i];
+                }
+            }
+            System.out.println(a);
+        }
+    }
+}

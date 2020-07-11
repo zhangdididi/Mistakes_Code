@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str1 = in.nextLine();
+        String str2 = in.nextLine();
+        ArrayList<Character> list = new ArrayList<>();
+        HashSet<Character> set = new HashSet<>();
+        int index1 = 0, index2 = 0;
+        while (index1 < str1.length() && index2 < str2.length()) {
+            if (str1.charAt(index1) != str2.charAt(index2)) {
+                //如果两个对应的字符不相等，就放到set中，并且让index1++
+                list.add(str1.charAt(index1));
+                str1.charAt(index1);
+                index1++;
+            } else {
+                //如果两个字符相等，就让index1++，index2++
+                index1++;
+                index2++;
+            }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            char ch = list.get(i);
+            if (!set.contains(ch)) {
+                System.out.print(Character.toUpperCase(ch));
+                set.add(ch);
+            }
+        }
+    }
+}

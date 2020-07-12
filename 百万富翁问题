@@ -8,7 +8,6 @@
 这样交换 30 天后，百万富翁交出了多少钱？陌生人交出了多少钱？（注意一个是万元，一个是分）
 */
 
-
 public class Main {
     public static void main(String[] args) {
         long rich = 0;

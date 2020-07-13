@@ -1,1 +1,34 @@
+import java.util.*;
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String num16 = in.nextLine();
+        int squareCount = 0;
+        Double res = 0D;
+        int num = 0;
+        //从右边向左边进行遍历
+        for (int i = num16.length() - 1; i > 1; i--) {
+            char ch = num16.charAt(i);
+            Double square =  Math.pow(16, squareCount);
+            if (ch == 'A') {
+                num = 10;
+            } else if (ch == 'B') {
+                num = 11;
+            } else if (ch == 'C') {
+                num = 12;
+            } else if (ch == 'D') {
+                num = 13;
+            } else if (num == 'E') {
+                num = 14;
+            } else if (num == 'F') {
+                num = 15;
+            } else {
+                num = ch - 'A';
+            }
+            res += num * square;
+            squareCount++;
+        }
+        System.out.printf("%.0f", res);
+    }
+}

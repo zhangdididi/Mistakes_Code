@@ -10,6 +10,7 @@
 */
 
 import java.util.*;
+
 public class Printer {
     public int[] arrayPrint(int[][] arr, int n) {
         // write code here

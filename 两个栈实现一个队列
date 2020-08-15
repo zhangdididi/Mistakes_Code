@@ -3,7 +3,6 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.Stack;
 
-
 public class Main {
 
     public static Stack<Integer> stack1 = new Stack<>();

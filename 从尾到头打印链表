@@ -22,7 +22,7 @@ public class Solution {
         if (listNode == null) {
             return list;
         }
-        
+        //通过栈来完成链表节点逆序的获取
         Stack<Integer> stack = new Stack<>();
         while (listNode != null) {
             stack.push(listNode.val);

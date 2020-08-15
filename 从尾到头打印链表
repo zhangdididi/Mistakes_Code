@@ -28,7 +28,6 @@ public class Solution {
             stack.push(listNode.val);
             listNode = listNode.next;
         }
-        
         while (!stack.empty()) {
             list.add(stack.pop());
         }
@@ -58,6 +57,7 @@ public class Solution {
     }
     
     public void printListFromTailToHeadHelper(ListNode listNode, ArrayList list) {
+        //跳出条件就是找到链表尾部，然后开始进行返回
         if (listNode == null) {
             return;
         }
